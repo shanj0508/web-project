@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      img {
+        max-width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <img id="dog" src="dog.jpg" alt="一只dog" />
+    <script>
+      dog.onload = function() {
+        console.log("图片加载成功");
+      };
+      dog.onerror = function() {
+        console.log("图片加载失败");
+        dog.src = "dog2.png";
+      };
+    </script>
+  </body>
+</html>

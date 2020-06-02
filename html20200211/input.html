@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    text:
+    <!-- 普通文本输入框 -->
+    <input type="text" required /><br />
+    color:
+    <!-- 输入框可选择颜色 -->
+    <input type="color" /><br />
+    password:
+    <!--密码框输入框，输入的内容加密，显示为小圆点·····  -->
+    <input type="password" /><br />
+    radio:
+    <!-- 单选框:将多个选项的name值设置为同一个，可实现单选功能 -->
+    <input name="gender" type="radio" />男
+    <input name="gender" type="radio" />女
+    <br />
+    checkbox:
+    <!-- 复选框：建议将多个选项的name值设置为相同，表示是同一组 -->
+    <input name="hobby" type="checkbox" />爱好1
+    <input name="hobby" type="checkbox" />爱好2
+    <input name="hobby" type="checkbox" />爱好3
+    <br />
+    file:
+    <!-- 选择单个文件 -->
+    <input type="file" />
+    <!-- 选择多个文件 -->
+    <input type="file" multiple />
+    <br />
+    hidden:
+    <!-- 隐藏输入框:用来给js自动填入一些信息和内容，例如ID、字符串等 -->
+    <input type="hidden" />
+    <br />
+    textarea:
+    <!-- 文本域：多行输入框 -->
+    <textarea></textarea> <br />
+    <!-- 设置文本域不可拖拽大小 -->
+    <textarea style="resize: none; width: 50%; height: 300px;"></textarea>
+    <br />
+    select：
+    <!-- 下拉选择框：value为真正的值，文本为页面显示的值，默认值value为空 -->
+    <select>
+      <option value="">-请选择-</option>
+      <option value="1">选项1</option>
+      <option value="2">选项2</option>
+      <option value="3">选项3</option>
+    </select>
+    <br />
+    submit:
+    <!-- 提交按钮 -->
+    <input type="submit" />
+    button：
+    <!-- 提交按钮 -->
+    <button type="submit">提交</button>
+    <!-- 上面两者的区别：button中间可以有任何内容，包括文本、标签等，input只能通过value设置文本，不能设置标签等其他内容 -->
+  </body>
+</html>
