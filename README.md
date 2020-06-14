@@ -10,7 +10,7 @@ http://shanj0508.monster/web-project/canvas_demo/index.html
 
 ## cv_demo/src
 
-描述: 制作会动的简历-第一版
+描述：制作会动的简历-第一版
 
 访问地址：
 
