@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
+    />
+    <title>Jean的简历</title>
+  </head>
+  <body>
+    <style id="style"></style>
+    <div id="html"></div>
+    <div id="div1Wrapper">
+      <div id="div1"></div>
+    </div>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      *::after {
+        box-sizing: border-box;
+      }
+      *::before {
+        box-sizing: border-box;
+      }
+      #demo {
+        word-break: break-all; /* 设置文字自动换行 */
+      }
+      #div1 {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 20px;
+      }
+      #div1::before {
+        content: ""; /*content必须有，不能删除，否则为元素就不存在了*/
+        /* display: block; */
+        position: absolute;
+      }
+      #div1::after {
+        content: "";
+        /* display: block; */
+        position: absolute;
+      }
+      /* 设置媒体查询，当屏幕小于500px时，认为是手机 */
+      @media (max-width: 500px) {
+        #html {
+          height: 50vh;
+          overflow: auto; /*给手机浏览器加滚动条*/
+        }
+        #div1Wrapper {
+          height: 50vh;
+        }
+        #div1 {
+          position: relative;
+          top: 0px;
+          right: 0px;
+        }
+      }
+    </style>
+    <script src="main.js"></script>
+  </body>
+</html>
