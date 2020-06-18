@@ -117,79 +117,87 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"C:/Users/Shanj/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"C:/Users/Shanj/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
+})({"tree.js":[function(require,module,exports) {
+var createTree = function createTree(value) {
+  return {
+    data: value,
+    children: null,
+    parent: null
   };
+};
 
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
+var addChild = function addChild(node, value) {
+  var newNode = {
+    data: value,
+    children: null,
+    parent: node
+  };
+  node.children = node.children || [];
+  node.children.push(newNode);
+  return newNode;
+};
 
-var cssTimeout = null;
+var travel = function travel(tree, fn) {
+  fn(tree);
 
-function reloadCSS() {
-  if (cssTimeout) {
+  if (!tree.children) {
     return;
   }
 
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
+  for (var i = 0; i < tree.children.length; i++) {
+    travel(tree.children[i], fn);
+  }
+};
 
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
+var find = function find(tree, node) {
+  if (tree === node) {
+    return tree;
+  } else if (tree.children) {
+    for (var i = 0; i < tree.children.length; i++) {
+      var result = find(tree.children[i], node);
+
+      if (result) {
+        return result;
       }
     }
 
-    cssTimeout = null;
-  }, 50);
-}
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
 
-module.exports = reloadCSS;
-},{"./bundle-url":"C:/Users/Shanj/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/bundle-url.js"}],"style.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
+var removeNode = function removeNode(tree, node) {
+  var siblings = node.parent.children;
+  var index = 0;
 
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"C:/Users/Shanj/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/css-loader.js"}],"C:/Users/Shanj/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+  for (var i = 1; i < siblings.length; i++) {
+    if (siblings[i] === node) {
+      index = i;
+    }
+  }
+
+  siblings.splice(index, 1);
+};
+
+var tree = createTree(10);
+var node2 = addChild(tree, 20);
+var node3 = addChild(tree, 30);
+addChild(tree, 40);
+var node5 = addChild(tree, 50);
+addChild(node2, 201);
+addChild(node2, 202);
+addChild(node2, 203);
+addChild(node2, 204);
+console.log(tree);
+
+var fn = function fn(node) {
+  console.log(node.data);
+};
+
+removeNode(tree, node5);
+console.log(tree);
+},{}],"C:/Users/Shanj/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -393,5 +401,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/Shanj/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/style.e308ff8e.js.map
+},{}]},{},["C:/Users/Shanj/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js","tree.js"], null)
+//# sourceMappingURL=/tree.ee3f47e3.js.map
