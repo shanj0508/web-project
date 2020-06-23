@@ -117,56 +117,74 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"main.js":[function(require,module,exports) {
-// document.createElement('div')
-// let div1 = window.dom.create('div')
-// console.log(div1)
-// const div = dom.create("<div>new div</div>")
-// console.log(div)
-// const div3 = dom.create('<div id="parent"></div>')
-// dom.wrap(test,div3)
-// const nodes = dom.empty(window.empty)
-// console.log(nodes)
-// dom.remove(test)
-// //写属性
-// dom.attr(test,'title','xxx')
-// //读属性
-// const title = dom.attr(test,'title')
-// console.log(`title:${title}`)
-// //写文本
-// dom.text(test,'你好，这是新的内容')
-// //读文本
-// const text = dom.text(test)
-// console.log(`text:${text}`)
-// //写html
-// dom.html(test,'你好，这是新的内容')
-// //读html
-// const html = dom.html(test)
-// console.log(`html:${html}`)
-// dom.style(test,{border:'1px solid red',color:"red"})
-// console.log(dom.style(test,'border'))
-// dom.style(test,'border','1px solid black')
-// dom.class.add(test,"red")
-// dom.class.add(test,"blue")
-// dom.class.remove(test,"blue")
-// console.log(dom.class.has(test,"red"))
-// const fn = ()=>{
-//     console.log('点击了')
-// }
-// dom.on(test,'click',fn)
-// dom.off(test,'click',fn)
-// const testDiv = dom.find('#test')[0]
-// console.log(testDiv)
-// console.log(dom.find('.red',testDiv)[0])
-// console.log(dom.parent(test))
-// console.log(dom.children(test))
-// console.log(dom.siblings(dom.find('.red')[0]))
-// console.log(dom.next(dom.find('.red')[0]))
-// console.log(dom.previous(dom.find('.red')[0]))
-// const t = dom.find('#test')[0]
-// dom.each(dom.children(t),(n)=>dom.style(n,"color","red"))
-console.log(dom.index(test));
-},{}],"C:/Users/Shanj/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+})({"C:/Users/Shanj/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"C:/Users/Shanj/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"C:/Users/Shanj/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/bundle-url.js"}],"C:/Users/Shanj/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -370,5 +388,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/Shanj/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js","main.js"], null)
-//# sourceMappingURL=/main.1f19ae8e.js.map
+},{}]},{},["C:/Users/Shanj/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/index.js.map
