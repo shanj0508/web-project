@@ -1,4 +1,4 @@
-window.jQuery = function (selectorOrArray) {
+window.$ = window.jQuery = function (selectorOrArray) {
   //jQuery可以接收一个选择器或者数组
   let elements;
   //通过重载，判断selectorOrArray是选择器还是数组，分别赋值elements

@@ -126,7 +126,7 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
-window.jQuery = function (selectorOrArray) {
+window.$ = window.jQuery = function (selectorOrArray) {
   //jQuery可以接收一个选择器或者数组
   var elements; //通过重载，判断selectorOrArray是选择器还是数组，分别赋值elements
 
@@ -298,7 +298,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59072" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57510" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

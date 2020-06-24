@@ -19,5 +19,7 @@
 //   .find(".child")
 //   .each((div) => console.log(div));
 
-const x = jQuery(".test1").find(".child");
-x.prev().print();
+// const x = jQuery(".test1").find(".child");
+// x.prev().print();
+
+$(".test1").print();
