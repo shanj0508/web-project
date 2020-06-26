@@ -139,136 +139,157 @@ window.$ = window.jQuery = function (selectorOrArray) {
   } //api可以操作elements
 
 
-  return {
-    //简写步骤2、将const api ={} 替换为return {}  同时省略最后的return api  直接将该对象return
-    //闭包：函数访问外部变量
-    // addClass中访问了外部的elements变量
-    addClass: function addClass(className) {
-      for (var i = 0; i < elements.length; i++) {
-        elements[i].classList.add(className);
-      }
+  var api = Object.create(jQuery.prototype); //创建一个对象，这个对象的__proto__为括号里面的东西
+  //上面这行代码相当于：const api ={__proto__:jQuery.prototype}
+  // api.elements = elements
+  // api.oldApi = selectorOrArray.oldApi
+  // 上面这两行代码简写为下面这个写法：
+  //Object.assign:把后面{}里面的属性一个一个赋值给前面的api(浅复制)
 
-      return this; //返回的是api,因为addClass函数调用时是通过api.addClass调用的，因此this就是api,可以直接return this
-      //简写步骤3、当直接return对象时，不给对象命名，则这里只能写return this ，不能写return api，当函数调用时，this指向调用它的api
-    },
-    find: function find(selector) {
-      var array = [];
+  Object.assign(api, {
+    elements: elements,
+    //将find等方法从window.jQuery 里面移动到jQuery.prototype后，直接使用elements无法访问这些元素
+    //因此设置jQuery.prototype的 elements = elements  并将jQuery.prototype中的所有elements改写为this.elements,即可正常访问elements
+    oldApi: selectorOrArray.oldApi
+  }); // return {
+  //简写步骤2、将const api ={} 替换为return {}  同时省略最后的return api  直接将该对象return
+  // elements=elements,
+  // oldApi: selectorOrArray.oldApi, //将array中的oldApi赋值给api对象，这样在end()中才能使用这个oldApi
 
-      for (var i = 0; i < elements.length; i++) {
-        //jQuery('.test1').find('.child')
-        //jQuery(选择器)先查找返回了一些元素elements
-        //调用find(选择器)时，先遍历jQuery返回的elements
-        //在每个element[i]下面通过querySelectorAll(selector)查找符合的元素
-        //由于querySelectorAll返回的是一组伪数组，因此需要 Array.from()将返回的伪数组转为真正的数组，并赋值给elements2
-        var elements2 = Array.from(elements[i].querySelectorAll(selector)); //通过array.concat将elements2与array连接起来，形成新的array
-
-        array = array.concat(elements2);
-      } //return array    //如果这里是return array ，则后面的 . 无法继续链式操作
-      //const newApi = jQuery(array)   //通过jQuery构造一个新的newApi 并返回
-      //return newApi     //如果直接return api/this 那么每次得到新的元素都会污染之前的api,所以必须得到新的对象newApi,避免和原来的api相互污染，影响原先的函数调用
+  return api;
+}; // return api   //这里的api不能改为this，因为jQuery函数调用是通过window.jQuery调用的，this => window,不是api
+//简写步骤1、这里return api 可以省略，直接在对象声明时return
+// };
 
 
-      array.oldApi = this; //this==> 当前api===>旧的 api
-
-      return jQuery(array); //上面两句可以合并简写为这一句。
-      //返回一个新的api对象，来操作array,我们给jQuery()的参数传什么，jQuery就会返回一个对象用来操作什么
-    },
-    each: function each(fn) {
-      //遍历当前的所有元素
-      for (var i = 0; i < elements.length; i++) {
-        fn.call(null, elements[i], i);
-      }
-
-      return this; //this就是api对象
-    },
-    parent: function parent() {
-      //获取每个元素的父元素
-      var array = [];
-      this.each(function (node) {
-        if (array.indexOf(node.parentNode) === -1) {
-          //array.indexOf(node.parentNode) === -1 表示node.parentNode不在array数组中
-          //如果没有则添加，去重复
-          array.push(node.parentNode);
-        }
-      });
-      return jQuery(array); //返回一个可操作array数组的jQuery对象
-    },
-    children: function children() {
-      //获取每个元素的子元素
-      var array = [];
-      this.each(function (node) {
-        array.push.apply(array, _toConsumableArray(node.children)); //展开操作符...的作用是，把node.children里面的内容拆开，依次放入array中，得到一个平铺的数组
-      });
-      return jQuery(array); //返回一个可操作array数组的jQuery对象
-    },
-    siblings: function siblings() {
-      //获取每个元素的兄弟节点
-      var array = [];
-      this.each(function (node) {
-        array.push.apply(array, _toConsumableArray(Array.from(node.parentNode.children).filter(function (n) {
-          return n !== node;
-        })));
-      });
-      return jQuery(array); //返回一个可操作array数组的jQuery对象
-    },
-    index: function index() {
-      //获取每个元素的位置
-      var array = [];
-      this.each(function (node) {
-        var list = node.parentNode.children;
-        var i;
-
-        for (i = 0; i < list.length; i++) {
-          if (list[i] === node) {
-            break;
-          }
-        }
-
-        array.push(i);
-      });
-      return jQuery(array); //返回一个可操作array数组的jQuery对象
-    },
-    next: function next() {
-      //获取每个元素的下一个兄弟元素
-      var array = [];
-      this.each(function (node) {
-        var x = node.nextSibling;
-
-        while (x && x.nodeType === 3) {
-          //如果x存在并且x的节点类型是文本节点，那么就继续找下一个
-          x = x.nextSibling;
-        }
-
-        array.push(x);
-      });
-      return jQuery(array); //返回一个可操作array数组的jQuery对象
-    },
-    prev: function prev() {
-      //获取每个元素的下一个兄弟元素
-      var array = [];
-      this.each(function (node) {
-        var x = node.previousSibling;
-
-        while (x && x.nodeType === 3) {
-          //如果x存在并且x的节点类型是文本节点，那么就继续找下一个
-          x = x.previousSibling;
-        }
-
-        array.push(x);
-      });
-      return jQuery(array); //返回一个可操作array数组的jQuery对象
-    },
-    print: function print() {
-      //打印出当前的elements
-      console.log(elements);
-    },
-    oldApi: selectorOrArray.oldApi,
-    //将array中的oldApi赋值给api对象，这样在end()中才能使用这个oldApi
-    end: function end() {
-      return this.oldApi; //this===> 新的api
+jQuery.fn = jQuery.prototype = {
+  //给prototype设置一个别名fn
+  constructor: jQuery,
+  jQuery: true,
+  //闭包：函数访问外部变量
+  // addClass中访问了外部的elements变量
+  addClass: function addClass(className) {
+    for (var i = 0; i < this.elements.length; i++) {
+      this.elements[i].classList.add(className);
     }
-  }; // return api   //这里的api不能改为this，因为jQuery函数调用是通过window.jQuery调用的，this => window,不是api
-  //简写步骤1、这里return api 可以省略，直接在对象声明时return
+
+    return this; //返回的是api,因为addClass函数调用时是通过api.addClass调用的，因此this就是api,可以直接return this
+    //简写步骤3、当直接return对象时，不给对象命名，则这里只能写return this ，不能写return api，当函数调用时，this指向调用它的api
+  },
+  find: function find(selector) {
+    var array = [];
+
+    for (var i = 0; i < this.elements.length; i++) {
+      //jQuery('.test1').find('.child')
+      //jQuery(选择器)先查找返回了一些元素elements
+      //调用find(选择器)时，先遍历jQuery返回的elements
+      //在每个element[i]下面通过querySelectorAll(selector)查找符合的元素
+      //由于querySelectorAll返回的是一组伪数组，因此需要 Array.from()将返回的伪数组转为真正的数组，并赋值给elements2
+      var elements2 = Array.from(this.elements[i].querySelectorAll(selector)); //通过array.concat将elements2与array连接起来，形成新的array
+
+      array = array.concat(elements2);
+    } //return array    //如果这里是return array ，则后面的 . 无法继续链式操作
+    //const newApi = jQuery(array)   //通过jQuery构造一个新的newApi 并返回
+    //return newApi     //如果直接return api/this 那么每次得到新的元素都会污染之前的api,所以必须得到新的对象newApi,避免和原来的api相互污染，影响原先的函数调用
+
+
+    array.oldApi = this; //this==> 当前api===>旧的 api
+
+    return jQuery(array); //上面两句可以合并简写为这一句。
+    //返回一个新的api对象，来操作array,我们给jQuery()的参数传什么，jQuery就会返回一个对象用来操作什么
+  },
+  each: function each(fn) {
+    //遍历当前的所有元素
+    for (var i = 0; i < this.elements.length; i++) {
+      fn.call(null, this.elements[i], i);
+    }
+
+    return this; //this就是api对象
+  },
+  parent: function parent() {
+    //获取每个元素的父元素
+    var array = [];
+    this.each(function (node) {
+      if (array.indexOf(node.parentNode) === -1) {
+        //array.indexOf(node.parentNode) === -1 表示node.parentNode不在array数组中
+        //如果没有则添加，去重复
+        array.push(node.parentNode);
+      }
+    });
+    return jQuery(array); //返回一个可操作array数组的jQuery对象
+  },
+  children: function children() {
+    //获取每个元素的子元素
+    var array = [];
+    this.each(function (node) {
+      array.push.apply(array, _toConsumableArray(node.children)); //展开操作符...的作用是，把node.children里面的内容拆开，依次放入array中，得到一个平铺的数组
+    });
+    return jQuery(array); //返回一个可操作array数组的jQuery对象
+  },
+  siblings: function siblings() {
+    //获取每个元素的兄弟节点
+    var array = [];
+    this.each(function (node) {
+      array.push.apply(array, _toConsumableArray(Array.from(node.parentNode.children).filter(function (n) {
+        return n !== node;
+      })));
+    });
+    return jQuery(array); //返回一个可操作array数组的jQuery对象
+  },
+  index: function index() {
+    //获取每个元素的位置
+    var array = [];
+    this.each(function (node) {
+      var list = node.parentNode.children;
+      var i;
+
+      for (i = 0; i < list.length; i++) {
+        if (list[i] === node) {
+          break;
+        }
+      }
+
+      array.push(i);
+    });
+    return jQuery(array); //返回一个可操作array数组的jQuery对象
+  },
+  next: function next() {
+    //获取每个元素的下一个兄弟元素
+    var array = [];
+    this.each(function (node) {
+      var x = node.nextSibling;
+
+      while (x && x.nodeType === 3) {
+        //如果x存在并且x的节点类型是文本节点，那么就继续找下一个
+        x = x.nextSibling;
+      }
+
+      array.push(x);
+    });
+    return jQuery(array); //返回一个可操作array数组的jQuery对象
+  },
+  prev: function prev() {
+    //获取每个元素的下一个兄弟元素
+    var array = [];
+    this.each(function (node) {
+      var x = node.previousSibling;
+
+      while (x && x.nodeType === 3) {
+        //如果x存在并且x的节点类型是文本节点，那么就继续找下一个
+        x = x.previousSibling;
+      }
+
+      array.push(x);
+    });
+    return jQuery(array); //返回一个可操作array数组的jQuery对象
+  },
+  print: function print() {
+    //打印出当前的elements
+    console.log(this.elements);
+  },
+  end: function end() {
+    return this.oldApi; //this===> 新的api
+  }
 };
 },{}],"C:/Users/Shanj/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -298,7 +319,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57510" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53837" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
