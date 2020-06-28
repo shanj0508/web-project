@@ -1,5 +1,14 @@
 {
+  "scripts": {
+    "build": "rm -rf dist && parcel build nav/src/index.html --no-minify --public-url ./"
+  },
   "devDependencies": {
     "cssnano": "^4.1.10"
-  }
+  },
+  "name": "demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:shanj0508/javascript-project.git",
+  "author": "shanj <605284854@qq.com>",
+  "license": "MIT"
 }

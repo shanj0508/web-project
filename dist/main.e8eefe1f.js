@@ -194,4 +194,4 @@ $(document).on("keypress", function (e) {
   }
 });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=https://shanj0508.monster/web-project/nav/dist/main.e8eefe1f.js.map
+//# sourceMappingURL=main.e8eefe1f.js.map
