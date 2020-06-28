@@ -1,8 +1,8 @@
 # web-project
+
 ## canvas_demo
 
 描述：画板
-
 
 访问地址：
 
@@ -24,6 +24,10 @@ https://shanj0508.monster/web-project/cv_demo/src/index.html
 
 https://shanj0508.monster/web-project/queue_demo/src/index.html
 
+## nav/src
 
+描述：前航 - 前端导航网站
 
+访问地址：
 
+https://shanj0508.monster/web-project/nav/src/index.html
