@@ -31,3 +31,11 @@ https://shanj0508.monster/web-project/queue_demo/src/index.html
 访问地址：
 
 https://shanj0508.monster/web-project/nav/src/index.html
+
+## AJAX_1/public
+
+描述：理解 AJAX
+
+访问地址：
+
+https://shanj0508.monster/web-project/AJAX_1/public/index.html
