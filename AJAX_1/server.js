@@ -43,37 +43,37 @@ var server = http.createServer(function (request, response) {
     response.setHeader("Content-Type", "text/javascript;charset=utf-8");
     response.write(fs.readFileSync("/AJAX_1/public/main.js"));
     response.end();
-  } else if (path === "/2.js") {
+  } else if (path === "/AJAX_1/public/2.js") {
     response.statusCode = 200;
     response.setHeader("Content-Type", "text/javascript;charset=utf-8");
     response.write(fs.readFileSync("AJAX_1/public/2.js"));
     response.end();
-  } else if (path === "/style.css") {
+  } else if (path === "/AJAX_1/public/style.css") {
     response.statusCode = 200;
     response.setHeader("Content-Type", "text/css;charset=utf-8");
     response.write(fs.readFileSync("AJAX_1/public/style.css"));
     response.end();
-  } else if (path === "/3.html") {
+  } else if (path === "/AJAX_1/public/3.html") {
     response.statusCode = 200;
     response.setHeader("Content-Type", "text/html;charset=utf-8");
     response.write(fs.readFileSync("AJAX_1/public/3.html"));
     response.end();
-  } else if (path === "/4.xml") {
+  } else if (path === "/AJAX_1/public/4.xml") {
     response.statusCode = 200;
     response.setHeader("Content-Type", "text/xml;charset=utf-8");
     response.write(fs.readFileSync("AJAX_1/public/4.xml"));
     response.end();
-  } else if (path === "/5.json") {
+  } else if (path === "/AJAX_1/public/5.json") {
     response.statusCode = 200;
     response.setHeader("Content-Type", "application/json;charset=utf-8"); //这里可以写为text/json或者pplication/json
     response.write(fs.readFileSync("AJAX_1/public/5.json"));
     response.end();
-  } else if (path === "/page2.json") {
+  } else if (path === "/AJAX_1/db/page2.json") {
     response.statusCode = 200;
     response.setHeader("Content-Type", "application/json;charset=utf-8"); //这里可以写为text/json或者pplication/json
     response.write(fs.readFileSync("AJAX_1/db/page2.json"));
     response.end();
-  } else if (path === "/page3.json") {
+  } else if (path === "/AJAX_1/db/page3.json") {
     response.statusCode = 200;
     response.setHeader("Content-Type", "application/json;charset=utf-8"); //这里可以写为text/json或者pplication/json
     response.write(fs.readFileSync("AJAX_1/db/page3.json"));
