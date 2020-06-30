@@ -1,22 +1,3 @@
-// //请求main.js
-// const request = new XMLHttpRequest(); //1、创建XMLHttpRequest对象
-// request.open("GET", "/main.js"); //2、调用对象的open方法 XMLHttpRequest.open() 方法初始化一个请求。该方法要从JavaScript代码使用，Request.open(method, url);
-// request.XMLHttpRequest = () => {
-//   //3、监听对象的onload和onerror事件
-//   //   console.log(request.response);
-//   //创建script标签
-//   const script = document.createElement("script");
-//   //填写script内容
-//   script.innerHTML = request.response;
-//   //将script插入页面的head部分
-//   document.body.appendChild(script);
-//   // console.log("成功了");
-// };
-// request.onerror = () => {
-//   console.log("失败了");
-// };
-// request.send(); //4、调用对象的send方法
-
 //请求下一页
 let n = 1;
 getPage.onclick = () => {
