@@ -38,7 +38,7 @@ var server = http.createServer(function (request, response) {
     response.write(string); //response.write() 写入相应内容  括号内的字符串用反引号括起来，反引号中间的内容可换行编写
     //设置响应体
     response.end(); // response.end() 调用end，则响应发送给浏览器
-  } else if (path === "/main.js") {
+  } else if (path === "/AJAX_1/public/main.js") {
     response.statusCode = 200;
     response.setHeader("Content-Type", "text/javascript;charset=utf-8");
     response.write(fs.readFileSync("AJAX_1/public/main.js"));
