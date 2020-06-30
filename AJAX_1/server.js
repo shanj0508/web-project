@@ -27,7 +27,7 @@ var server = http.createServer(function (request, response) {
   // console.log('request.headers')
   // console.log(request.headers) //读取请求头
 
-  if (path === "/web-project/AJAX_1/public/index.html") {
+  if (path === "/AJAX_1/public/index.html") {
     response.statusCode = 200; //设置响应状态码
     response.setHeader("Content-Type", "text/html;charset=utf-8"); //设置响应头
     let string = fs.readFileSync("AJAX_1/public/index.html").toString(); //得到的内容可能不是string类型，需要toString()
@@ -38,10 +38,10 @@ var server = http.createServer(function (request, response) {
     response.write(string); //response.write() 写入相应内容  括号内的字符串用反引号括起来，反引号中间的内容可换行编写
     //设置响应体
     response.end(); // response.end() 调用end，则响应发送给浏览器
-  } else if (path === "/web-project/AJAX_1/public/main.js") {
+  } else if (path === "/AJAX_1/public/main.js") {
     response.statusCode = 200;
     response.setHeader("Content-Type", "text/javascript;charset=utf-8");
-    response.write(fs.readFileSync("/web-project/AJAX_1/public/main.js"));
+    response.write(fs.readFileSync("/AJAX_1/public/main.js"));
     response.end();
   } else if (path === "/2.js") {
     response.statusCode = 200;
