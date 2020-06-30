@@ -2,7 +2,7 @@
 let n = 1;
 getPage.onclick = () => {
   const request = new XMLHttpRequest(); //1、创建XMLHttpRequest对象
-  request.open("GET", `/web-project/AJAX_1/public/page${n + 1}.json`); //2、调用对象的open方法 XMLHttpRequest.open() 方法初始化一个请求。该方法要从JavaScript代码使用，Request.open(method, url);
+  request.open("GET", `/page${n + 1}.json`); //2、调用对象的open方法 XMLHttpRequest.open() 方法初始化一个请求。该方法要从JavaScript代码使用，Request.open(method, url);
   request.onreadystatechange = () => {
     //3、监听对象的onreadystatechange事件
     if (request.readyState === 4) {
