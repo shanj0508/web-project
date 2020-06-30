@@ -27,7 +27,7 @@ var server = http.createServer(function (request, response) {
   // console.log('request.headers')
   // console.log(request.headers) //读取请求头
 
-  if (path === "/index.html") {
+  if (path === "/AJAX_1/public/index.html") {
     response.statusCode = 200; //设置响应状态码
     response.setHeader("Content-Type", "text/html;charset=utf-8"); //设置响应头
     let string = fs.readFileSync("AJAX_1/public/index.html").toString(); //得到的内容可能不是string类型，需要toString()
