@@ -49,3 +49,11 @@ https://shanj0508.monster/web-project/AJAX_1/public/index.html
 访问地址：
 
 https://github.com/shanj0508/web-project/tree/master/cross-domain
+
+## static-server
+
+描述：静态服务器
+
+访问地址：
+
+https://github.com/shanj0508/web-project/tree/master/static-server
