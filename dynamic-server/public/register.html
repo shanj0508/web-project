@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
+    />
+    <title>注册</title>
+  </head>
+  <body>
+    <form id="registerForm">
+      <div>
+        <label for="">用户名 <input type="text" name="name" /></label>
+      </div>
+      <div>
+        <label for="">密码 <input type="password" name="password" /></label>
+      </div>
+      <div><button type="submit">注册</button></div>
+    </form>
+    <!-- 引入jQuery -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      const $form = $("#registerForm");
+      $form.on("submit", (e) => {
+        e.preventDefault(); //阻止默认事件，如果不阻止，会默认刷新页面
+        //获取页面输入的用户名和密码
+        const name = $form.find("input[name=name]").val();
+        const password = $form.find("input[name=password]").val();
+        console.log(name, password);
+        //提交AJAX请求，上传JSON数据
+        $.ajax({
+          method: "POST",
+          url: "/register",
+          contentType: "text/json;charset=UTF-8",
+          data: JSON.stringify({ name: name, password: password }),
+        }).then(
+          () => {
+            //注册成功后，跳转到登录页面
+            alert("注册成功！");
+            // window.open("./sign_in.html");
+            location.href = "./sign_in.html";
+          },
+          () => {}
+        );
+        //服务器获取JSON数据--server.js
+        //.then 注册成功和失败
+      });
+    </script>
+  </body>
+</html>

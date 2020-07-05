@@ -57,3 +57,11 @@ https://github.com/shanj0508/web-project/tree/master/cross-domain
 访问地址：
 
 https://github.com/shanj0508/web-project/tree/master/static-server
+
+## dynamic-server
+
+描述：动态服务器
+
+访问地址：
+
+https://github.com/shanj0508/web-project/tree/master/dynamic-server
