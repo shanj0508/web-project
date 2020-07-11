@@ -82,4 +82,4 @@ https://shanj0508.monster/web-project/pikachu/dist/test.html
 
 访问地址：
 
-https://github.com/shanj0508/web-project/tree/master/mvc
+https://shanj0508.monster/web-project/mvc/dist/index.html
