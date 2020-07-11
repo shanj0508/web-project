@@ -43,8 +43,8 @@ https://shanj0508.monster/web-project/AJAX_1/public/index.html
 ## cross-domain
 
 描述：
-模拟两个网站qq.com和frank.com实现跨域访问
-分别通过cors和jsonp方式实现跨域访问
+模拟两个网站 qq.com 和 frank.com 实现跨域访问
+分别通过 cors 和 jsonp 方式实现跨域访问
 
 访问地址：
 
@@ -72,7 +72,9 @@ https://github.com/shanj0508/web-project/tree/master/dynamic-server
 
 访问地址：
 
-https://shanj0508.monster/web-project/pikachu/src/test.html
+https://shanj0508.monster/web-project/pikachu/src/index.html
+
+https://shanj0508.monster/web-project/pikachu/dist/test.html
 
 ## mvc
 
@@ -81,4 +83,3 @@ https://shanj0508.monster/web-project/pikachu/src/test.html
 访问地址：
 
 https://github.com/shanj0508/web-project/tree/master/mvc
-
