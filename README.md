@@ -72,7 +72,7 @@ https://github.com/shanj0508/web-project/tree/master/dynamic-server
 
 访问地址：
 
-https://shanj0508.monster/web-project/pikachu/src/index.html
+https://shanj0508.monster/web-project/pikachu/src/test.html
 
 ## mvc
 
@@ -80,5 +80,5 @@ https://shanj0508.monster/web-project/pikachu/src/index.html
 
 访问地址：
 
-https://shanj0508.monster/web-project/mvc/src/index.html
+https://github.com/shanj0508/web-project/tree/master/mvc
 
