@@ -65,3 +65,20 @@ https://github.com/shanj0508/web-project/tree/master/static-server
 访问地址：
 
 https://github.com/shanj0508/web-project/tree/master/dynamic-server
+
+## pikachu
+
+描述：pikachu
+
+访问地址：
+
+https://shanj0508.monster/web-project/pikachu/src/index.html
+
+## mvc
+
+描述：mvc
+
+访问地址：
+
+https://shanj0508.monster/web-project/mvc/src/index.html
+

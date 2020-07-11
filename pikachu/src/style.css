@@ -1,0 +1,211 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  background: #fee433;
+  min-height: 100vh;
+}
+
+.skin {
+  position: relative;
+}
+.eye {
+  border: 3px solid #010100;
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  left: 50%;
+  top: 100px;
+  margin-left: -32px; /*居中*/
+  border-radius: 50%;
+  background: #2e2e2e;
+}
+/* 眼白：可以用伪元素做，也可以加一个元素去做 */
+.eye::before {
+  content: "";
+  display: block;
+  border: 3px solid #000000;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border-radius: 50%;
+  position: relative;
+  left: 4px;
+  top: 2px;
+}
+/*交集选择器： .eye.left 中间没有空格 */
+.eye.left {
+  transform: translateX(-100px);
+}
+.eye.right {
+  transform: translateX(100px);
+}
+
+.nose {
+  width: 20px;
+  height: 6px;
+  position: relative;
+  left: 50%;
+  top: 145px;
+  margin-left: -10px;
+  border-radius: 10px 10px 0px 0px; /*左上和右上分别10px,右下和左下分别0px*/
+  background: black;
+  z-index: 10;
+}
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  33% {
+    transform: rotate(5deg);
+  }
+  66% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.nose:hover {
+  transform-origin: center bottom;
+  /* transform-origin: 50% 100%; 设置wave摇动的原点：transform-origin: 50% 100%  表示 左右晃动以y轴为原点，上下晃动以下顶点为原点*/
+  animation: wave 300ms infinite linear;
+}
+.san {
+  border: 10px solid red;
+  border-color: black transparent transparent transparent;
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  bottom: -20px;
+  /* right: -1px; 如果yuan里面写了border 1px  就会差这1像素没对齐*/
+  /* right: -2px; */
+  /* left: 50%;
+  top: 200px;
+  margin-left: -5px; */
+}
+.mouth {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 270px;
+  margin: -100px;
+}
+.mouth .up {
+  position: relative;
+  top: -20px;
+  z-index: 1;
+}
+.mouth .up .lip {
+  border: 3px solid black;
+  width: 100px;
+  height: 30px;
+  border-top-color: transparent;
+  position: relative;
+  position: absolute;
+  left: 50%;
+  margin-left: -50px;
+  background: #fee433; /*不设置背景颜色，默认背景颜色是透明的，这样后面的舌头部分颜色会透上来，因此需要设置背景颜色，防止下面的颜色透上来*/
+}
+.mouth .up .lip.left {
+  border-radius: 0 0 0 50px;
+  border-right-color: transparent;
+  transform: rotate(-15deg) translateX(-53px);
+}
+.mouth .up .lip::before {
+  content: ""; /*必须写，否则看不到伪元素*/
+  display: block; /*伪元素默认显示为行内元素*/
+  width: 7px;
+  height: 30px;
+  background: #fee433;
+  position: absolute;
+  bottom: 0px;
+}
+
+.mouth .up .lip.left::before {
+  right: -6px;
+}
+.mouth .up .lip::after {
+  content: ""; /*必须写，否则看不到伪元素*/
+  display: block; /*伪元素默认显示为行内元素*/
+  width: 100px;
+  height: 7px;
+  background: #fee433;
+  position: absolute;
+  left: 0px;
+  top: -7px;
+}
+
+.mouth .up .lip.right {
+  border-radius: 0 0 50px 0;
+  border-left-color: transparent;
+  transform: rotate(15deg) translateX(53px);
+}
+.mouth .up .lip.right::before {
+  left: -6px;
+}
+.mouth .down {
+  height: 180px;
+  position: absolute;
+  top: 5px;
+  width: 100%;
+  overflow: hidden; /*超出部分隐藏*/
+}
+.mouth .down .inner {
+  border: 3px solid black;
+  width: 150px;
+  height: 1000px;
+  border-radius: 75px / 300px; /*舌头的形状*/
+  background: #990513;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  margin-left: -75px;
+  overflow: hidden;
+}
+
+.mouth .down .inner .outer {
+  width: 200px;
+  height: 300px;
+  background: #fc4a62;
+  border-radius: 100px;
+  position: absolute;
+  bottom: -155px;
+  left: 50%;
+  margin-left: -100px;
+}
+
+.face {
+  border: 3px solid black;
+  width: 88px;
+  height: 88px;
+  background: #fc0d1c;
+  border-radius: 50%;
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  margin-left: -44px;
+}
+.face > img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.face.left {
+  transform: translateX(-180px);
+}
+.face.left > img {
+  transform: rotateY(180deg);
+  transform-origin: 0 0;
+}
+
+.face.right {
+  transform: translateX(180px);
+}
