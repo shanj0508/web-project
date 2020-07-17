@@ -83,3 +83,11 @@ https://shanj0508.monster/web-project/pikachu/dist/test.html
 访问地址：
 
 https://shanj0508.monster/web-project/mvc/dist/index.html
+
+## mvc
+
+描述：webpack 体验
+
+访问地址：
+
+https://shanj0508.monster/web-project/webpack-demo/dist/index.html
