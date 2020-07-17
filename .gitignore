@@ -4,4 +4,5 @@
 mvc/node_modules
 mvc/.cache
 pikachu/.cache
-webpack-demo/node_modules
+# webpack-demo/node_modules
+*/node_modules/*  
