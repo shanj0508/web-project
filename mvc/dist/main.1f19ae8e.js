@@ -11343,6 +11343,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //app2
 var $tabBar = (0, _jquery.default)("#app2 .tab-bar");
 var $tabContent = (0, _jquery.default)("#app2 .tab-content");
+var localKye = "app2-index";
+var index = localStorage.getItem(localKye) || 0;
 $tabBar.on("click", "li", function (e) {
   console.log(e.target); //获取当前点击的元素
 
@@ -11352,7 +11354,8 @@ $tabBar.on("click", "li", function (e) {
   $li.addClass("selected").siblings().removeClass("selected");
   var index = $li.index(); //获取当前元素的排行
 
-  console.log(index); //找到$tabContent的子元素们，在子元素们中找到第index个子元素，设置css为显示，并且将其兄弟元素css设置为隐藏
+  console.log(index);
+  localStorage.setItem(localKye, index); //找到$tabContent的子元素们，在子元素们中找到第index个子元素，设置css为显示，并且将其兄弟元素css设置为隐藏
   //方法一：.css   不推荐
   //   $tabContent
   //     .children()
@@ -11367,7 +11370,7 @@ $tabBar.on("click", "li", function (e) {
 
   $tabContent.children().eq(index).addClass("active").siblings().removeClass("active");
 });
-$tabBar.children().eq(0).trigger("click"); //找到$tabBar的子元素们，在子元素们中找到第一个子元素，并触发click事件。即默认点击第一个tab页签
+$tabBar.children().eq(index).trigger("click"); //找到$tabBar的子元素们，在子元素们中找到第一个子元素，并触发click事件。即默认点击第一个tab页签
 },{"./app2.css":"app2.css","jquery":"../node_modules/jquery/dist/jquery.js"}],"app3.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -11384,8 +11387,26 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 //app3
 var $square = (0, _jquery.default)("#app3 .square");
+var localKey = "app3-active"; //yes-激活 no undefined -未激活   默认是undefined
+
+var active = localStorage.getItem(localKey) === "yes"; // if (active) {
+//   $square.addClass("active");
+// } else {
+//   $square.removeClass("active");
+// }
+//上面的if-else简写为下面的形式：
+
+$square.toggleClass("active", active); //如果第二个参数active是true  就加'active'类，否则不加
+
 $square.on("click", function () {
-  $square.toggleClass("active"); //toggleClass 如果没有这个类就加上， 如果有就删掉
+  if ($square.hasClass("active")) {
+    $square.removeClass("active");
+    localStorage.setItem(localKey, "no");
+  } else {
+    $square.addClass("active");
+    localStorage.setItem(localKey, "yes");
+  } // $square.toggleClass("active"); //toggleClass 如果没有这个类就加上， 如果有就删掉
+
 });
 },{"./app3.css":"app3.css","jquery":"../node_modules/jquery/dist/jquery.js"}],"app4.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -11450,7 +11471,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54621" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55395" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -11627,4 +11648,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["C:/Users/Shanj/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js","main.js"], null)
-//# sourceMappingURL=main.1f19ae8e.js.map
+//# sourceMappingURL=/main.1f19ae8e.js.map
