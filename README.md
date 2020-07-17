@@ -84,7 +84,7 @@ https://shanj0508.monster/web-project/pikachu/dist/test.html
 
 https://shanj0508.monster/web-project/mvc/dist/index.html
 
-## mvc
+## webpack-demo
 
 描述：webpack 体验
 
