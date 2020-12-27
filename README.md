@@ -91,3 +91,16 @@ https://shanj0508.monster/web-project/mvc/dist/index.html
 访问地址：
 
 https://shanj0508.monster/web-project/webpack-demo/dist/index.html
+
+## web_navpro
+
+描述：前端导航栏项目
+功能：
+1. 搜索
+2. 新增快捷方式
+3. 删除快捷方式
+4. 点击快捷方式跳转
+5. 在当前页面键盘输入快捷方式首字母，直接跳转页面
+访问地址：
+
+https://shanj0508.monster/web-project/web_navpro/src/index.html
