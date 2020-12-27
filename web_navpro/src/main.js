@@ -55,7 +55,7 @@ const render=()=>{
         // e.stopPropagation()
         e.preventDefault()
         hashMap.splice(index,1)
-        // hashMap.splice(13,1)
+        // hashMap.splice(12,1)
         // const string=JSON.stringify(hashMap)
         // localStorage.setItem('x',string)
         render()
@@ -66,19 +66,34 @@ const render=()=>{
 render()
 $('.addButton')
 .on('click',()=>{
-    let url=window.prompt('请问你要添加的网址是啥？')
-    if(url === null){
+    let url=window.prompt('请输入要添加的网址？')
+    if(url){
+        //填写内容并“确定”
+        var reg=/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/;
+        if(!reg.test(url)){
+            alert("小可爱，网址不正确哦");
+        }else{
+            let ico1 = url+'/favicon.ico'
+            let ico2 = url+'//favicon.ico'
+            hashMap.push({
+                // logo:simplifyUrl(url)[0],
+                logo: `<img src="${ico1}" alt="" onerror="javascript:this.onerror='';this.src='${ico2}';"/>`,
+                logoType:'text',
+                url:url
+            })
+            render()   
+        }
+    }
+    else if(url === ""){
+            //未填写但“确定”
+            console.log('未填写但“确定”');
+            return
+    }
+    else{
+        //“取消”事件
+        console.log('“取消”事件');
         return
     }
-    let ico1 = url+'/favicon.ico'
-    let ico2 = url+'//favicon.ico'
-    hashMap.push({
-        // logo:simplifyUrl(url)[0],
-        logo: `<img src="${ico1}" alt="" onerror="javascript:this.src='${ico2}';"/>`,
-        logoType:'text',
-        url:url
-    })
-    render()   
 })
 window.onbeforeunload=()=>{
     const string=JSON.stringify(hashMap)
