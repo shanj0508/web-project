@@ -109,6 +109,11 @@ body {
   padding: 20px 0;
   position: relative;
   cursor: pointer; /*鼠标指针显示为手型*/
+  border-radius: 5%;
+}
+
+.siteList .site:hover {
+  background: rgb(242, 242, 242);
 }
 
 .siteList .site > .logo {
