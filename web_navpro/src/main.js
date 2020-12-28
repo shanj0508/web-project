@@ -30,36 +30,45 @@ keyPress = (e)=>{
 const render=()=>{
     $siteList.find('li:not(.last)').remove()
     hashMap.forEach((node,index)=>{
-        const $li = $(`<li>
-        <a href="${node.url}">
-            <div class="site">
-                <div class="logo">
-                    ${node.logo}
+            const $li = $(`<li>
+            <a href="${node.url}">
+                <div class="site">
+                    <div class="logo">
+                        ${node.logo}
+                    </div>
+                    <div class="link">${simplifyUrl(node.url)}</div>
+                    <div class="more">
+                        <svg class="icon">
+                            <use xlink:href="#icon-more"></use>
+                        </svg>
+                    </div>
+                    <div class="options">
+                        <div class="modify">修改快捷方式</div>
+                        <div class="remove">移除</div>
+                    </div>
                 </div>
-                <div class="link">${simplifyUrl(node.url)}</div>
-                <div class="close">
-                    <svg class="icon">
-                        <use xlink:href="#icon-close"></use>
-                    </svg>
-                </div>
-            </div>
-        </a>
-    </li>`).insertBefore($lastLi)
-    $('input').on('focus',(e)=>{
-        $(document).off('keypress')
-    })
-    $('input').on('blur',(e)=>{
-        $(document).on('keypress', keyPress)
-    })
-    $li.on('click','.close',(e)=>{
-        // e.stopPropagation()
-        e.preventDefault()
-        hashMap.splice(index,1)
-        // hashMap.splice(12,1)
-        // const string=JSON.stringify(hashMap)
-        // localStorage.setItem('x',string)
-        render()
-    })
+            </a>
+        </li>`).insertBefore($lastLi)
+        $('input').on('focus',(e)=>{
+            $(document).off('keypress')
+        })
+        $('input').on('blur',(e)=>{
+            $(document).on('keypress', keyPress)
+        })
+        $li.on('click','.more',(e)=>{
+            // e.stopPropagation()
+            e.preventDefault()
+            console.log($('.siteList').find('li .options'[index]))
+            // var myElement=$('.siteList').find('li .options')[index]
+            // myElement.style.display='flex'
+            $($('.siteList li .options')[index]).css('display', 'flex')
+        })
+        $li.on('click','.remove',(e)=>{
+            // e.stopPropagation()
+            e.preventDefault()
+            hashMap.splice(index,1)
+            render()
+        })
     })
 }
 

@@ -133,16 +133,56 @@ body {
   margin-top: 4px;
 }
 
-.siteList .site > .close {
+.siteList .site > .more {
   position: absolute;
   top: 5px;
   right: 10px;
   display: none;
   cursor: default; /*鼠标指针默认为箭头*/
 }
-.siteList .site:hover > .close {
+.siteList .site:hover > .more {
   display: block;
 }
+.siteList .site > .options {
+  border: 1px solid #ccc;
+  position: absolute;
+  width: 130px;
+  height: 80px;
+  top: 0;
+  right: 0;
+  font-size: 14px;
+  /* font-family: Microsoft YaHei; */
+  /* display: flex; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border-radius: 4px;
+  display: none;
+}
+.siteList .site > .options > .modify {
+  position: relative;
+  width: 130px;
+  height: 30px;
+  padding-left: 25px;
+  display: flex;
+  align-items: center;
+}
+.siteList .site > .options > .modify:hover {
+  background: #cccccc;
+}
+.siteList .site > .options > .remove {
+  position: relative;
+  width: 130px;
+  height: 30px;
+  padding-left: 25px;
+  display: flex;
+  align-items: center;
+}
+.siteList .site > .options > .remove:hover {
+  background: #ccc;
+}
+
 .siteList .addButton {
   width: 160px;
   display: flex;
