@@ -113,7 +113,10 @@ body {
 }
 
 .siteList .site:hover {
-  background: rgb(242, 242, 242);
+  position: relative;
+  /* background: rgb(242, 242, 242); */
+  transform: translateY(-5px);
+  transition: all 0.5s;
 }
 
 .siteList .site > .logo {

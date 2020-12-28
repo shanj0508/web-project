@@ -73,8 +73,9 @@ $('.addButton')
         if(!reg.test(url)){
             alert("小可爱，网址不正确哦");
         }else{
-            let ico1 = url+'/favicon.ico'
-            let ico2 = url+'//favicon.ico'
+            let formatUrl = url.split('://')[0]+'://'+url.split('://')[1].split('/')[0]   //url格式化
+            let ico1 = formatUrl+'/favicon.ico'
+            let ico2 = formatUrl+'//favicon.ico'
             hashMap.push({
                 // logo:simplifyUrl(url)[0],
                 logo: `<img src="${ico1}" alt="" onerror="javascript:this.onerror='';this.src='${ico2}';"/>`,
