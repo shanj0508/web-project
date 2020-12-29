@@ -26,7 +26,7 @@ keyPress = (e)=>{
     }
 
 }
-
+// hashMap.splice(4,1)
 const render=()=>{
     $siteList.find('li:not(.last)').remove()
     hashMap.forEach((node,index)=>{
@@ -55,16 +55,21 @@ const render=()=>{
         $('input').on('blur',(e)=>{
             $(document).on('keypress', keyPress)
         })
-        $li.on('click','.more',(e)=>{
+        $li.on('click','.more',(e)=>{   
+            $(`.siteList > li:nth-child(${index+1})`).siblings().find('.options').hide()
+            $($('.siteList > li .options')[index]).css('display', 'flex')
+
+            $(document).one("click", function(){
+                
+                $(".options").hide();
+            });
             // e.stopPropagation()
-            e.preventDefault()
-            console.log($('.siteList').find('li .options'[index]))
-            // var myElement=$('.siteList').find('li .options')[index]
-            // myElement.style.display='flex'
-            $($('.siteList li .options')[index]).css('display', 'flex')
+            // e.preventDefault()
+            return false;     //等价于阻止事件冒泡和阻止默认事件
         })
+
         $li.on('click','.remove',(e)=>{
-            // e.stopPropagation()
+            e.stopPropagation()
             e.preventDefault()
             hashMap.splice(index,1)
             render()
@@ -73,37 +78,50 @@ const render=()=>{
 }
 
 render()
-$('.addButton')
-.on('click',()=>{
-    let url=window.prompt('请输入要添加的网址？')
-    if(url){
-        //填写内容并“确定”
-        var reg=/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/;
-        if(!reg.test(url)){
-            alert("小可爱，网址不正确哦");
-        }else{
-            let formatUrl = url.split('://')[0]+'://'+url.split('://')[1].split('/')[0]   //url格式化
-            let ico1 = formatUrl+'/favicon.ico'
-            let ico2 = formatUrl+'//favicon.ico'
-            hashMap.push({
-                // logo:simplifyUrl(url)[0],
-                logo: `<img src="${ico1}" alt="" onerror="javascript:this.onerror='';this.src='${ico2}';"/>`,
-                logoType:'text',
-                url:url
-            })
-            render()   
+let imgError=(e)=>{
+    //javascript:this.onerror='';this.src='${ico2}';
+    e.onerror=''
+    $(e).attr("src","images/imageDefault.jpg")
+}
+$('.addButton').on('click',()=>{
+
+    $('.options').each((index,element)=>{
+        // $(element).css('display', 'none')
+        console.log($(element).css('display'));
+        $(element).css('display')!=='none' ? $(element).css('display','none') : ''
+
+    })
+    setTimeout(()=>{
+        let url=window.prompt('请输入要添加的网址？')
+        if(url){
+            //填写内容并“确定”
+            var reg=/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/;
+            if(!reg.test(url)){
+                alert("小可爱，网址不正确哦");
+            }else{
+                let formatUrl = url.split('://')[0]+'://'+url.split('://')[1].split('/')[0]   //url格式化
+                let ico1 = formatUrl+'/favicon.ico'
+                let ico2 = formatUrl+'//favicon.ico'
+                hashMap.push({
+                    // logo:simplifyUrl(url)[0],
+                    logo: `<img src="${ico1}" alt="" onerror="imgError(this)"/>`,
+                    logoType:'text',
+                    url:url
+                })
+                render()   
+            }
         }
-    }
-    else if(url === ""){
-            //未填写但“确定”
-            console.log('未填写但“确定”');
+        else if(url === ""){
+                //未填写但“确定”
+                console.log('未填写但“确定”');
+                return
+        }
+        else{
+            //“取消”事件
+            console.log('“取消”事件');
             return
-    }
-    else{
-        //“取消”事件
-        console.log('“取消”事件');
-        return
-    }
+        }
+    })
 })
 window.onbeforeunload=()=>{
     const string=JSON.stringify(hashMap)
