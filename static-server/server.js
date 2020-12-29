@@ -37,7 +37,7 @@ var server = http.createServer(function (request, response) {
     ".css": "text/css",
     ".js": "text/javascript",
     ".png": "image/png",
-    ".jpg": "image/jpeg",
+    ".jpg": "image/jpeg"
   };
   response.setHeader(
     "Content-Type",
