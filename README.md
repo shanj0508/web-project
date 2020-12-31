@@ -95,6 +95,7 @@ https://shanj0508.monster/web-project/webpack-demo/dist/index.html
 ## web_navpro
 
 描述：前端导航栏项目
+
 功能：
 1. 搜索
 2. 新增快捷方式
@@ -104,3 +105,11 @@ https://shanj0508.monster/web-project/webpack-demo/dist/index.html
 访问地址：
 
 https://shanj0508.monster/web-project/web_navpro/src/index.html
+
+## pikachu1
+
+描述：实现动态皮卡丘动画效果
+
+访问地址：
+
+https://shanj0508.monster/web-project/pikachu1/src/index.html
