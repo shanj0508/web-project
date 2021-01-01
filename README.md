@@ -113,3 +113,5 @@ https://shanj0508.monster/web-project/web_navpro/src/index.html
 访问地址：
 
 https://shanj0508.monster/web-project/pikachu1/src/index.html
+
+https://shanj0508.monster/web-project/pikachu1/dist/test.html
