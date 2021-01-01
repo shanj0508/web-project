@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <title>pikachu test</title>
+  </head>
+  <body>
+    <style id="outPutStyle"></style>
+    <div id="outPutDiv"></div>
+    <div id="buttons">
+      <button id="btnPause">暂停</button>
+      <button id="btnPlay">重放</button>
+      <button id="btnSlow">慢速</button>
+      <button id="btnNormal">中速</button>
+      <button id="btnFast">快速</button>
+    </div>
+    <style>/* 内置的styel */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      #htmlBox {
+        position: fixed; /*绝对定位的宽度会往内缩，因此必须给width: 100%; 否则看不到*/
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+      #html {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+      }
+      #outPutStyle {
+        display: none;
+      }
+      #outPutDiv {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50vh;
+        border: 1px solid red;
+        overflow-y: auto;
+      }
+      /* 隐藏滚动条 */
+      #outPutDiv::-webkit-scrollbar {
+        display: none;
+      }
+      #buttons {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        right: 0;
+        top: 0;
+        margin-top: 10px;
+        margin-right: 10px;
+        z-index: 10;
+      }
+      #buttons > button {
+        margin-bottom: 10px;
+        padding: 4px 8px;
+      }</style>
+    <div id="htmlBox">
+      <div id="html">
+        <!-- 内置pikachu的html -->
+        <div class="skin">
+          <div class="eye left">
+            <div class="white"></div>
+          </div>
+          <div class="eye right">
+            <div class="white"></div>
+          </div>
+          <div class="nose">
+            <div class="yuan"></div>
+            <div class="san"></div>
+          </div>
+          <div class="mouth">
+            <div class="up">
+              <div class="lips left"></div>
+              <div class="lips right"></div>
+            </div>
+            <div class="down">
+              <div class="yuan1">
+                <div class="yuan2"></div>
+              </div>
+            </div>
+          </div>
+          <div class="face leftFace"></div>
+          <div class="face rightFace"></div>
+        </div>
+      </div>
+    </div>
+    <script src="/test.e98b79dd.js"></script>
+  </body>
+</html>
