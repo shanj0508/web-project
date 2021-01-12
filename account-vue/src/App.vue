@@ -6,7 +6,13 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss">   //App需要设置全局样式，因此这里不能加scoped
+// 重置样式
+*{
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
