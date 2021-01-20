@@ -4,6 +4,8 @@ $font-song:Georgia, "Nimbus Roman No9 L", "Songti SC", STSong, "AR PL New Sung",
 
 $color-highlight:#f00;
 
+//placeholder
+
 %clearFix {
   &::after {
     content: '';
@@ -16,6 +18,6 @@ $color-shadow: rgba(0, 0, 0, 0.25);
   box-shadow: 0 0 3px $color-shadow;
 }
 %innerShadow {
-  box-shadow: inset 0 -3px 3px -3px $color-shadow,
-  inset 0 3px 3px -3px $color-shadow;
+  box-shadow: inset 0 -3px 3px -3px $color-shadow, /*下阴影*/
+  inset 0 3px 3px -3px $color-shadow;  /*上阴影*/
 }
