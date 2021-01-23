@@ -4,50 +4,73 @@
             <button>新增标签</button>
         </div>
         <ul class="current">
-            <li>衣</li>
-            <li>食</li>
-            <li>住</li>
-            <li>行</li>
-
+            <li v-for="tag in dataSource" :key="tag"
+                :class="{selected:selectedTags.indexOf(tag)>=0}"
+                @click="toggle(tag)">{{tag}}
+            </li>
         </ul>
-
     </div>
 </template>
 
-<script>
-    export default {
-        
+<script lang="ts">
+    import Vue from "vue";
+    import {Component, Prop} from "vue-property-decorator";
+
+    @Component
+    export default class Notes extends Vue {
+        @Prop() dataSource: string[] | undefined;   //string[]表示是一个字符串数组，里面只能存放字符串
+        selectedTags: string[] = [];
+
+        toggle(tag: string) {
+            const index = this.selectedTags.indexOf(tag);
+            if (index >= 0) {
+                this.selectedTags.splice(index,1);
+            } else {
+                this.selectedTags.push(tag);
+            }
+        }
+
     }
 </script>
 
 <style lang="scss" scoped>
-    .tags{
+    .tags {
         display: flex;
         flex-direction: column-reverse;
-        flex-grow: 1;    /*占满*/
+        flex-grow: 1; /*占满*/
         font-size: 14px;
         padding: 16px;
-        > .current{
+
+        > .current {
             display: flex;
             flex-wrap: wrap;
-            > li{
-                background: #d9d9d9;
+
+            > li {
+                $bg: #d9d9d9;
+                background: $bg;
                 $h: 24px;
                 border-radius: $h/2;
                 padding: 0 16px;
                 margin-right: 12px;
-                line-height:$h;
+                line-height: $h;
                 margin-top: 4px;
 
+                &.selected {
+                    background: darken($bg, 50%);
+                    color: white;
+
+                }
             }
 
         }
-        > .new{
+
+        > .new {
             padding-top: 16px;
-            button{
+
+            button {
                 background: transparent;
                 border: none;
-                color:#999;
+                color: #999;
                 border-bottom: 1px solid;
                 padding: 0 4px;
 
