@@ -1,7 +1,7 @@
 <template>
     <div class="tags">
         <div class="new">
-            <button>新增标签</button>
+            <button @click="create">新增标签</button>
         </div>
         <ul class="current">
             <li v-for="tag in dataSource" :key="tag"
@@ -18,16 +18,30 @@
 
     @Component
     export default class Notes extends Vue {
-        @Prop() dataSource: string[] | undefined;   //string[]表示是一个字符串数组，里面只能存放字符串
+        @Prop() readonly dataSource: string[] | undefined;   //string[]表示是一个字符串数组，里面只能存放字符串
         selectedTags: string[] = [];
 
         toggle(tag: string) {
             const index = this.selectedTags.indexOf(tag);
             if (index >= 0) {
-                this.selectedTags.splice(index,1);
+                this.selectedTags.splice(index, 1);
             } else {
                 this.selectedTags.push(tag);
             }
+        }
+
+        create() {
+            const name = window.prompt("请输入标签名");
+            console.log(name);
+            if (name === "") {
+                window.alert("标签名不能为空！");
+            } else if (this.dataSource) {
+                // this.dataSource.push(name!);   //不能直接改外部数据！不推荐!
+                this.$emit("update:dataSource",
+                    [...this.dataSource, name]);
+            }
+
+
         }
 
     }
