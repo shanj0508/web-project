@@ -11,11 +11,16 @@
 
 <script lang="ts">
     import Vue from "vue";
-    import {Component} from "vue-property-decorator";
+    import {Component, Watch} from "vue-property-decorator";
 
     @Component
     export default class Notes extends Vue {
         value = '';
+        // 监听value，发生变化时触发
+        @Watch('value')
+        onValueChanged(value:String){
+            this.$emit('update:value',value)
+        }
     }
 </script>
 

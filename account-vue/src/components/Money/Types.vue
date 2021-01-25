@@ -1,10 +1,10 @@
 <template>
     <div>
         <ul class="types">
-            <li :class="type==='-' && 'selected'"
+            <li :class="value==='-' && 'selected'"
                 @click="selectType('-')">支出
             </li>
-            <li :class="type==='+' && 'selected' "
+            <li :class="value==='+' && 'selected' "
                 @click="selectType('+')">收入
             </li>
         </ul>
@@ -13,18 +13,25 @@
 
 <script lang="ts">
     import Vue from "vue";
-    import {Component} from "vue-property-decorator";
+    import {Component, Prop, Watch} from "vue-property-decorator";
 
     @Component
     export default class Types extends Vue {
-        type = "-";   //'-'表示支出； '+'表示收入；
+        //type = "-";   //'-'表示支出； '+'表示收入；
+        @Prop() readonly value!:string;    //value!  加!后，不管有没有初始值，不报错了
 
         selectType(type: string) {
             if (type !== "-" && type !== "+") {
                 throw new Error("type is unknown");
             }
-            this.type = type;
+           // this.type = type;
+            this.$emit('update:value',type)
         }
+        //监听type 发生变化时触发
+        // @Watch('type')
+        // onTypeChanged(value:String){
+        //     this.$emit('update:value',value)
+        // }
 
     }
 </script>
