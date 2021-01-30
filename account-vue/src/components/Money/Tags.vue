@@ -17,7 +17,7 @@
     import {Component, Prop} from "vue-property-decorator";
 
     @Component
-    export default class Notes extends Vue {
+    export default class Tags extends Vue {
         @Prop() readonly dataSource: string[] | undefined;   //string[]表示是一个字符串数组，里面只能存放字符串
         selectedTags: string[] = [];
 
@@ -55,6 +55,7 @@
         flex-grow: 1; /*占满*/
         font-size: 14px;
         padding: 16px;
+        background: white;
 
         > .current {
             display: flex;
