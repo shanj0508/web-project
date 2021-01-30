@@ -32,7 +32,7 @@
         }
     )
     export default class Money extends Vue {
-        tags = ["衣", "食", "住", "行"];
+        tags = tagList;
         recordList: RecordItem[] = recordList;
         record: RecordItem = {
             tags: [],
