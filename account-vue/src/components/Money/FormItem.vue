@@ -5,14 +5,14 @@
             <input type="text"
                    :value="value"
                    @input="onValueChanged($event.target.value)"
-                   :placeholder="this.placeholder">
+                   :placeholder="placeholder">
         </label>
     </div>
 </template>
 
 <script lang="ts">
     import Vue from "vue";
-    import {Component, Prop, Watch} from "vue-property-decorator";
+    import {Component, Prop} from "vue-property-decorator";
 
     @Component
     export default class FormItem extends Vue {
@@ -23,7 +23,6 @@
         @Prop() placeholder?: string;   //?表示有可能不存在
 
 
-        @Watch("value")
         onValueChanged(value: String) {
             this.$emit("update:value", value);
         }
