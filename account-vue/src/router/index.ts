@@ -27,7 +27,7 @@ const routes: Array<RouteConfig> = [
     },
     {
         path: '/labels/edit',
-        component: EditLabel,
+        component: EditLabel
     },
     {
         path: '*',     //* 表示 除了上面写的路径外，其他所有的路径

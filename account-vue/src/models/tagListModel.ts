@@ -1,8 +1,13 @@
 const localStorageKeyName = 'tagList';
+type Tag = {
+    id: string
+    name: string
+}
+
 type TagListModel = {
-    data: string[]
-    fetch: () => string[]  //输入的参数类型=>输出的结果类型
-    create: (name: string) => 'success'|'duplicated'   //联合类型
+    data: Tag[]
+    fetch: () => Tag[]  //输入的参数类型=>输出的结果类型
+    create: (name: string) => 'success' | 'duplicated'   //联合类型
     save: () => void   //void表示为空
 }
 const tagListModel: TagListModel = {
@@ -15,10 +20,12 @@ const tagListModel: TagListModel = {
         window.localStorage.setItem(localStorageKeyName, JSON.stringify(this.data));
     },
     create(name: string) {
-        if (this.data.indexOf(name) >= 0) {
+        //this.data=[{id:'1',name:'1'},{id='2',name='2'}]
+        const names = this.data.map(item => item.name);
+        if (names.indexOf(name) >= 0) {
             return 'duplicated';    //表示文件名重复
         }
-        this.data.push(name);
+        this.data.push({id:name,name:name});
         this.save();
         return 'success';    //表示成功
 
