@@ -8,8 +8,8 @@
                 <Icon name="right"/>
             </router-link>
         </div>
-        <div class="creatTag-wrapper">
-            <Button class="creatTag" @click="createTag">
+        <div class="createTag-wrapper">
+            <Button class="createTag" @click="createTag">
                 新建标签
             </Button>
         </div>
@@ -18,22 +18,27 @@
 </template>
 
 <script lang="ts">
-    import Vue from "vue";
+    // import Vue from "vue";
     import {Component} from "vue-property-decorator";
     import Button from "@/components/Button.vue";
+    import {mixins} from "vue-class-component";
+    import TagHelper from "@/mixins/TagHelper";
+    // import tagHelper from "@/mixins/tagHelper";
+    // const tagHelper:any = require("@/mixins/TagHelper");
 
 
     @Component({
-        components: {Button}
-    })
-    export default class Labels extends Vue {
-        // tags = store.tagList;
-
-        createTag() {
-            const name = window.prompt("请输入标签名");
-            if (name) {
-                // store.createTag(name);
+        components: {Button},
+        // mixins: [tagHelper],
+        computed: {
+            tags() {
+                return this.$store.state.tagList;
             }
+        }
+    })
+    export default class Labels extends mixins(TagHelper) {
+        beforeCreate() {
+            this.$store.commit("fetchTags");
         }
 
     };
@@ -62,7 +67,7 @@
         }
     }
 
-    .creatTag {
+    .createTag {
         background: #767676;
         color: whitesmoke;
         border-radius: 4px;
