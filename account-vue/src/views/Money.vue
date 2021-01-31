@@ -24,12 +24,15 @@
 
     @Component(
         {
-            components: {NumberPad, Types, Tags, FormItem}
+            components: {NumberPad, Types, Tags, FormItem},
+            computed: {   //computed会自动计算 实时更新数据的值
+                recordList() {
+                    return store.recordList;
+                }
+            }
         }
     )
     export default class Money extends Vue {
-
-        recordList= store.recordList;
         record: RecordItem = {
             tags: [],
             notes: "",
