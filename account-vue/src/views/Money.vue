@@ -24,7 +24,7 @@
     @Component(
         {
             components: {NumberPad, Types, Tags, FormItem},
-            computed: {   //computed会自动计算 实时更新数据的值
+            computed: {
                 recordList() {
                     return this.$store.state.recordList;
                 }
