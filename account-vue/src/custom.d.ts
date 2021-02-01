@@ -1,25 +1,28 @@
-//ts类型声明
+type RootState = {
+    recordList: RecordItem[],
+    tagList: Tag[],
+    currentTag?: Tag
+}
 type RecordItem = {
-    tags: string[]
+    tags: Tag[]
     notes: string
     type: string
-    amount: number    // 数据类型object | string
-    createdAt?: Date    // 类 / 构造函数   ?表示可以createdAt为undefined不存在
-}
-type Tag = {
-    id: string
-    name: string
+    amount: number // 数据类型 object | string
+    createdAt?: string  // 类 / 构造函数
 }
 
+type Tag = {
+    id: string;
+    name: string;
+}
 type TagListModel = {
     data: Tag[]
-    fetch: () => Tag[]  //输入的参数类型=>输出的结果类型
-    create: (name: string) => 'success' | 'duplicated'   //联合类型
-    save: () => void   //void表示为空
+    fetch: () => Tag[]
+    create: (name: string) => 'success' | 'duplicated' // 联合类型
     update: (id: string, name: string) => 'success' | 'not found' | 'duplicated'
     remove: (id: string) => boolean
+    save: () => void
 }
 
 interface Window {
-
 }
