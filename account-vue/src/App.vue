@@ -1,5 +1,5 @@
 <template>
-    <div  id="app">
+    <div id="app">
         <router-view/>
     </div>
 </template>
@@ -8,7 +8,7 @@
 @import "~@/assets/style/reset.scss";
 @import "~@/assets/style/helper.scss";
 
-body{
+body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.5;
@@ -16,5 +16,10 @@ body{
     font-size: 16px;
     color: #333;
     background: white;
+}
+
+#app {
+    max-width: 400px;
+    margin: 0 auto;
 }
 </style>
