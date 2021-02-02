@@ -56,7 +56,7 @@
             flex-wrap: wrap;
 
             > li {
-                $bg: #d9d9d9;
+                $bg: #FAEBD7;
                 background: $bg;
                 $h: 24px;
                 border-radius: $h/2;
@@ -66,7 +66,7 @@
                 margin-top: 4px;
 
                 &.selected {
-                    background: darken($bg, 50%);
+                    background: darken($bg, 30%);
                     color: white;
 
                 }

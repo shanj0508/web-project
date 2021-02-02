@@ -63,7 +63,7 @@
     }
 
     .createTag {
-        background: #767676;
+        background: #ff2400;
         color: whitesmoke;
         border-radius: 4px;
         border: none;

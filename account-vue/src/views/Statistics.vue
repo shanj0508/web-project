@@ -14,7 +14,7 @@
                 </ol>
             </li>
         </ol>
-        <div v-else class="noResult">目前没有相关记录</div>
+        <div v-else class="noResult">暂时还没有记录，快去记一笔吧~</div>
     </Layout>
 </template>
 <script lang="ts">
@@ -100,10 +100,10 @@
 
     ::v-deep {
         .type-tabs-item {
-            background: #C4C4C4;
+            background: #faebd7;
 
             &.selected {
-                background: white;
+                background: #f5deb3;
 
                 &::after {
                     display: none;

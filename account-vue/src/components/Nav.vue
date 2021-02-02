@@ -2,10 +2,10 @@
     <!-- 底部导航栏 -->
     <nav>
         <router-link to="/labels" class="item" active-class="selected">
-         <Icon name="labels"/>
+            <Icon name="labels"/>
             标签
         </router-link>
-        <router-link to="/money"  class="item" active-class="selected">
+        <router-link to="/money" class="item" active-class="selected">
             <Icon name="money"/>
             记账
         </router-link>
@@ -24,6 +24,7 @@
 
 <style lang="scss" scoped>
     @import "~@/assets/style/helper.scss";
+
     nav {
         /*border: 1px solid red;*/
         display: flex;
@@ -31,7 +32,8 @@
         /*box-shadow: 0 0 3px rgba(0,0,0,0.25);*/
         flex-direction: row;
         font-size: 12px;
-        > .item{
+
+        > .item {
             padding: 2px 0;
             width: 33.33333%;
             display: flex;
@@ -39,12 +41,14 @@
             align-items: center;
             flex-direction: column;
         }
-        .icon{
+
+        .icon {
             width: 32px;
             height: 32px;
         }
-        >.item.selected{
-            color:$color-highlight;
+
+        > .item.selected {
+            color: $color-highlight;
         }
     }
 

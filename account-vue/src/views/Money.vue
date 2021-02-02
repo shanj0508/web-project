@@ -5,7 +5,7 @@
               :value.sync="record.type"/>
         <div class="notes">
             <FormItem field-name="备注"
-                      placeholder="在这里输入备注"
+                      placeholder="写点备注吧~"
                       :value.sync="record.notes"
             />
         </div>
@@ -65,5 +65,25 @@
 
     .notes {
         padding: 12px 0;
+        background: #f5f5f5;
+    }
+
+    /*   */
+    ::v-deep {
+        .type-tabs-item {
+            background: #C4C4C4;
+
+            &.selected {
+                background: white;
+
+                &::after {
+                    display: none;
+                }
+            }
+        }
+
+        .interval-tabs-item {
+            height: 48px;
+        }
     }
 </style>

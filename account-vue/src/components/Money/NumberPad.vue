@@ -88,7 +88,7 @@
                 &.zero {
                     width: 25*2%;
                 }
-                $bg: #F2F2F2;
+                $bg: #faebd7;
                 &:nth-child(1) {
                     background: $bg;
                 }
