@@ -41,9 +41,10 @@
 
 <style lang="scss" scoped>
     .tags {
-        background: white;
+        background: #FAEBD7;
         font-size: 16px;
         padding-left: 16px;
+
 
         > .tag {
             min-height: 44px;

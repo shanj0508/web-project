@@ -59,7 +59,7 @@
         text-align: center;
         font-size: 16px;
         padding: 12px 16px;
-        background: whitesmoke;
+        background: #FAEBD7;
         display: flex;
         align-items: center;
         justify-content: space-between;

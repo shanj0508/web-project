@@ -126,6 +126,7 @@
 
     .title {
         @extend %item;
+        background:whitesmoke;
     }
 
     .record {
