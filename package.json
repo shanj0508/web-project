@@ -12,6 +12,7 @@
   "author": "shanj <605284854@qq.com>",
   "license": "MIT",
   "dependencies": {
-    "css.js": "^0.2.3"
+    "css.js": "^0.2.3",
+    "echarts": "^5.0.1"
   }
 }
