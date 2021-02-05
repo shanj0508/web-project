@@ -3,7 +3,10 @@
     "build": "rm -rf dist && parcel build nav/src/index.html --no-minify --public-url ./"
   },
   "devDependencies": {
-    "cssnano": "^4.1.10"
+    "@types/vue": "^2.0.0",
+    "@vue/component-compiler-utils": "^3.2.0",
+    "cssnano": "^4.1.10",
+    "vue-template-compiler": "^2.6.12"
   },
   "name": "demo",
   "version": "1.0.0",
@@ -13,6 +16,8 @@
   "license": "MIT",
   "dependencies": {
     "css.js": "^0.2.3",
-    "echarts": "^5.0.1"
+    "echarts": "^5.0.1",
+    "vue": "^2.6.12",
+    "vue-hot-reload-api": "^2.3.4"
   }
 }
