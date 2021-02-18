@@ -69,10 +69,14 @@
         display: flex;
         flex-direction: column-reverse;
     }
-
+    $bg: white;
     .notes {
-        padding: 12px 0;
-        background: #f5f5f5;
+        padding: 6px 0;
+        background: darken($bg, 3%);
+    }
+    .createdAt{
+        padding: 6px 0;
+        background:darken($bg, 6%);
     }
 
     /*   */
