@@ -13,31 +13,32 @@ export default class App extends React.PureComponent {
         this.setState((state) => {
             return {x: state.x + 1}
         })
-        this.setState((state) => {
-            return {x: state.x - 1}
-        })
+        // this.setState((state) => {
+        //     return {x: state.x - 1}
+        // })
     }
-
-    // shouldComponentUpdate(nextProps, newState) {
-    //     if (newState.x === this.state.x) {
-    //         return false
-    //     } else {
-    //         return true
-    //     }
-    //
-    // }
 
     render() {
         console.log("render了一次")
+        let message
+        if (this.state.x % 2 === 0) {
+            message = <div>偶数</div>
+        } else {
+            message = <div>奇数</div>
+        }
         return (
-            <div className="App">
-                App
+            <React.Fragment>
                 <div>
-                    {this.state.x}
-                    <button onClick={this.onClick}>+1</button>
-                    {/*<B n={this.state.x}/>*/}
+                    {message}
                 </div>
-            </div>
+                <div className="App">
+                    App
+                    <div>
+                        {this.state.x}
+                        <button onClick={this.onClick}>+1</button>
+                    </div>
+                </div>
+            </React.Fragment>
         );
     }
 }
