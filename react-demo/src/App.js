@@ -1,5 +1,4 @@
 import React from 'react'
-// import "style.css"
 
 
 export default class App extends React.Component {
@@ -14,31 +13,35 @@ export default class App extends React.Component {
         this.setState((state) => {
             return {x: state.x + 1}
         })
+        this.setState((state) => {
+            return {x: state.x - 1}
+        })
+    }
+
+    shouldComponentUpdate(nextProps, newState) {
+        if (newState.x === this.state.x) {
+            return false
+        } else {
+            return true
+        }
+
     }
 
     render() {
+        console.log("render了一次")
         return (
             <div className="App">
-                App <button onClick={this.onClick}>+1</button>
-                <B n={this.state.x}/>
+                App
+                <div>
+                    {this.state.x}
+                    <button onClick={this.onClick}>+1</button>
+                    {/*<B n={this.state.x}/>*/}
+                </div>
             </div>
         );
     }
 }
 
-class B extends React.Component {
-    componentWillReceiveProps(newProps) {
-        console.log('旧的 props 为')
-        console.log(this.props)
-        console.log('新的 props 为')
-        console.log(newProps)
-        // 注意 console 的延迟计算 bug
-    }
-
-    render() {
-        return <div>B {this.props.n}</div>
-    }
-}
 
 
 
