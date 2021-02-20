@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export default class App extends React.Component {
+export default class App extends React.PureComponent {
     constructor(props) {
         super(props)
         this.state = {
@@ -18,14 +18,14 @@ export default class App extends React.Component {
         })
     }
 
-    shouldComponentUpdate(nextProps, newState) {
-        if (newState.x === this.state.x) {
-            return false
-        } else {
-            return true
-        }
-
-    }
+    // shouldComponentUpdate(nextProps, newState) {
+    //     if (newState.x === this.state.x) {
+    //         return false
+    //     } else {
+    //         return true
+    //     }
+    //
+    // }
 
     render() {
         console.log("render了一次")
