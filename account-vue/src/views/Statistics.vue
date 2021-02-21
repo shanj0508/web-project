@@ -1,13 +1,16 @@
 <template>
     <Layout>
         <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"/>
-        <ECharts :options="x"/>
+        <div class="chart-wrapper" ref="chartWrapper">
+            <Chart class="chart" :options="chartOptions"/>
+        </div>
         <ol v-if="groupedList.length>0">
             <li v-for="(group, index) in groupedList" :key="index">
                 <h3 class="title">{{beautify(group.title)}} <span>￥{{group.total}}</span></h3>
                 <ol>
                     <li v-for="item in group.items" :key="item.id"
-                        class="record">
+                        class="record"
+                    >
                         <span>{{tagString(item.tags)}}</span>
                         <span class="notes">{{item.notes}}</span>
                         <span>￥{{item.amount}} </span>
@@ -15,7 +18,9 @@
                 </ol>
             </li>
         </ol>
-        <div v-else class="noResult">暂时还没有记录，快去记一笔吧~</div>
+        <div v-else class="noResult">
+            目前没有相关记录
+        </div>
     </Layout>
 </template>
 <script lang="ts">
@@ -25,18 +30,22 @@
     import recordTypeList from "@/constants/recordTypeList";
     import dayjs from "dayjs";
     import clone from "@/lib/clone";
-    // import ECharts from 'vue-echarts'
-    const ECharts:any = require("vue-echarts").default;
-    console.log(ECharts);
-    import 'echarts/lib/chart/line'
-    import 'echarts/lib/component/polar'
+    import Chart from "@/components/Chart.vue";
+    import _ from "lodash";
+    import day from "dayjs";
 
     @Component({
-        components: {Tabs,ECharts},
+        components: {Tabs, Chart},
     })
     export default class Statistics extends Vue {
         tagString(tags: Tag[]) {
-            return tags.length === 0 ? "无" : tags.map(t => t.name).join("，");
+            return tags.length === 0 ? "无" :
+                tags.map(t => t.name).join("，");
+        }
+
+        mounted() {
+            const div = (this.$refs.chartWrapper as HTMLDivElement);
+            div.scrollLeft = div.scrollWidth;
         }
 
         beautify(string: string) {
@@ -45,6 +54,7 @@
             if (day.isSame(now, "day")) {
                 return "今天";
             } else if (day.isSame(now.subtract(1, "day"), "day")) {
+                console.log("hi");
                 return "昨天";
             } else if (day.isSame(now.subtract(2, "day"), "day")) {
                 return "前天";
@@ -54,57 +64,84 @@
                 return day.format("YYYY年M月D日");
             }
         }
-        get x(){
-            let data = []
 
-            for (let i = 0; i <= 360; i++) {
-                let t = i / 180 * Math.PI
-                let r = Math.sin(2 * t) * Math.cos(2 * t)
-                data.push([r, i])
+        get keyValueList() {
+            const today = new Date();
+            const array = [];
+            console.log(this.groupedList);
+            for (let i = 0; i <= 29; i++) {
+                // this.recordList = [{date:7.3, value:100}, {date:7.2, value:200}]
+                const dateString = day(today)
+                    .subtract(i, "day").format("YYYY-MM-DD");
+                const found = _.find(this.groupedList, {
+                    title: dateString
+                });
+                array.push({
+                    key: dateString, value: found ? found.total : 0
+                });
             }
-            return{
-                title: {
-                    text: '极坐标双数值轴'
-                },
-                legend: {
-                    data: ['line']
-                },
-                polar: {
-                    center: ['50%', '54%']
-                },
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'cross'
-                    }
-                },
-                angleAxis: {
-                    type: 'value',
-                    startAngle: 0
-                },
-                radiusAxis: {
-                    min: 0
-                },
-                series: [
-                    {
-                        coordinateSystem: 'polar',
-                        name: 'line',
-                        type: 'line',
-                        showSymbol: false,
-                        data: data
-                    }
-                ],
-                animationDuration: 2000
-
-            }
+            array.sort((a, b) => {
+                if (a.key > b.key) {
+                    return 1;
+                } else if (a.key === b.key) {
+                    return 0;
+                } else {
+                    return -1;
+                }
+            });
+            console.log("array");
+            console.log(array);
+            return array;
         }
+
+        get chartOptions() {
+            const keys = this.keyValueList.map(item => item.key);
+            const values = this.keyValueList.map(item => item.value);
+            console.log("values");
+            console.log(values);
+            return {
+                grid: {
+                    left: 0,
+                    right: 0,
+                },
+                xAxis: {
+                    type: "category",
+                    data: keys,
+                    axisTick: {alignWithLabel: true},
+                    axisLine: {lineStyle: {color: "#666"}},
+                    axisLabel: {
+                        formatter: function (value: string, index: number) {
+                            return value.substr(5);
+                        }
+                    }
+                },
+                yAxis: {
+                    type: "value",
+                    show: false
+                },
+                series: [{
+                    symbol: "circle",
+                    symbolSize: 12,
+                    itemStyle: {borderWidth: 1, color: "#666", borderColor: "#666"},
+                    // lineStyle: {width: 10},
+                    data: values,
+                    type: "line"
+                }],
+                tooltip: {
+                    show: true, triggerOn: "click",
+                    position: "top",
+                    formatter: "{c}"
+                }
+            };
+        }
+
         get recordList() {
             return (this.$store.state as RootState).recordList;
         }
 
         get groupedList() {
+            console.log("grouped list 被读取了");
             const {recordList} = this;
-
             const newList = clone(recordList)
                 .filter(r => r.type === this.type)
                 .sort((a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf());
@@ -124,8 +161,6 @@
             }
             result.map(group => {
                 group.total = group.items.reduce((sum, item) => {
-                    // console.log(sum);
-                    // console.log(item);
                     return sum + item.amount;
                 }, 0);
             });
@@ -146,6 +181,7 @@
         max-width: 100%;
         height: 400px;
     }
+
     .noResult {
         padding: 16px;
         text-align: center;
@@ -153,10 +189,10 @@
 
     ::v-deep {
         .type-tabs-item {
-            background: #faebd7;
+            background: #C4C4C4;
 
             &.selected {
-                background: #f5deb3;
+                background: white;
 
                 &::after {
                     display: none;
@@ -179,7 +215,6 @@
 
     .title {
         @extend %item;
-        background: whitesmoke;
     }
 
     .record {
@@ -191,5 +226,17 @@
         margin-right: auto;
         margin-left: 16px;
         color: #999;
+    }
+
+    .chart {
+        width: 430%;
+
+        &-wrapper {
+            overflow: auto;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
     }
 </style>
