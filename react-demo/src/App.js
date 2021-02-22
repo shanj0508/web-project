@@ -1,37 +1,48 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-
-export default class App extends React.PureComponent {
-    divRef = undefined;
-    constructor(props) {
-        super(props)
-        this.state = {
-            x: 1,
-            width: undefined
-        }
-        this.divRef = React.createRef()
+//类组件
+// class App extends React.PureComponent {
+//     constructor(props) {
+//         super(props)
+//         this.state = {
+//             x: 1
+//         }
+//     }
+//
+//     onClick = () => {
+//         this.setState((state) => {
+//             return {x: state.x + 1}
+//         })
+//     }
+//
+//     render() {
+//         return (
+//             <div>
+//                 {this.state.x}
+//                 <button onClick={this.onClick}>+1</button>
+//
+//             </div>
+//         );
+//     }
+// }
+//函数组件
+const App = props => {
+    const [n, setN] = useState(1)
+    const onClick = () => {
+        setN(n + 1)
     }
+    return (
+        <div>{n}
+            <button onClick={onClick}>+1</button>
+        </div>
+    )
 
-    onClick = () => {
-        this.setState((state) => {
-            return {x: state.x + 1}
-        })
-    }
-
-    componentDidMount() {
-        const div = this.divRef.current
-        const {width} = div.getBoundingClientRect()
-        this.setState({width})
-    }
-
-    render() {
-        return (
-            <div ref={this.divRef}>
-                Hello World，{this.state.width}
-            </div>
-        );
-    }
 }
+
+export default App
+
+
+
 
 
 
