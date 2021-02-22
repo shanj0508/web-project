@@ -19,6 +19,13 @@ const App = props => {
     })
 
 
+    useEffect(() => {
+        console.log('第一次渲染')
+        return () => {
+            console.log('组件要消亡了')
+        }
+    })
+
 
     return (
         <div>{n}
