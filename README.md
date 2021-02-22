@@ -115,3 +115,11 @@ https://shanj0508.monster/web-project/web_navpro/src/index.html
 https://shanj0508.monster/web-project/pikachu1/src/index.html
 
 https://shanj0508.monster/web-project/pikachu1/dist/test.html
+
+## account-vue
+
+描述：实现记账小精灵项目
+
+访问地址：
+
+https://shanj0508.github.io/account-website/

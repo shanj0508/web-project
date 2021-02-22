@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5c6f367b-1b04-4f3a-84fa-26546523bca1" name="Default Changelist" comment="React demo">
-      <change beforePath="$PROJECT_DIR$/../account-vue/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../account-vue/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../account-vue/src/views/Statistics.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../account-vue/src/views/Statistics.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../account-vue/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../account-vue/yarn.lock" afterDir="false" />
-    </list>
+    <list default="true" id="5c6f367b-1b04-4f3a-84fa-26546523bca1" name="Default Changelist" comment="React demo" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -77,6 +73,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -111,6 +108,7 @@
       <workItem from="1613806761660" duration="597000" />
       <workItem from="1613811721651" duration="11021000" />
       <workItem from="1613908914307" duration="50000" />
+      <workItem from="1613994172322" duration="184000" />
     </task>
     <task id="LOCAL-00001" summary="React demo">
       <created>1613742890477</created>
@@ -165,11 +163,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19999000" />
+    <option name="totallyTimeSpent" value="20183000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
