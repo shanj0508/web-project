@@ -1,56 +1,34 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
-//类组件
-// class App extends React.PureComponent {
-//     constructor(props) {
-//         super(props)
-//         this.state = {
-//             x: 1
-//         }
-//     }
-//
-//     onClick = () => {
-//         this.setState((state) => {
-//             return {x: state.x + 1}
-//         })
-//     }
-//
-//     render() {
-//         return (
-//             <div>
-//                 {this.state.x}
-//                 <button onClick={this.onClick}>+1</button>
-//
-//             </div>
-//         );
-//     }
-// }
 //函数组件
 const App = props => {
     const [n, setN] = useState(1)
-    const onClick = () => {
+    const [m, setM] = useState(1)
+    const onClickN = () => {
         setN(n + 1)
     }
+    const onClickM = () => {
+        setM(m + 1)
+    }
+    useEffect(() => {
+        console.log('第一次渲染')
+    }, [])
+
+    useEffect(() => {
+        console.log('n或m更新了')
+    })
+
+
+
     return (
         <div>{n}
-            <button onClick={onClick}>+1</button>
+            <button onClick={onClickN}>n+1</button>
+            <br/>
+            {m}
+            <button onClick={onClickM}>m+1</button>
         </div>
     )
 
 }
 
 export default App
-
-
-
-
-
-
-
-
-
-
-
-
-
-
